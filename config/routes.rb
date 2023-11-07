@@ -7,13 +7,33 @@ devise_for :users, controllers: {
   sessions: 'public/sessions'
 }
 
-
-
-
 # 管理者用
 # URL /admin/sign_in ...
 devise_for :admin, controllers: {
   sessions: "admin/sessions"
 }
 
+namespace :admin do
+    root to: "homes#top"
+    get "admin" => "homes#top"
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :comments
+    resources :reviews
+
+  end
+
+
+
+root to: "public/homes#top"
+get "/home/about" =>"public/homes#about" ,as: "about"
+
+scope module: :public  do
+  resources :comments
+  resources :reviews
+  get "users/my_page" => "users#show"
+  get "users/informetion/edit" => "users#edit"
+  patch "users/informetion" => "users#update"
+  get "users/quit" => "users#quit"
+  patch "users/leave" => "users#leave"
+  end
 end

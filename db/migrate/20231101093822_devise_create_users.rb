@@ -18,6 +18,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.integer :gender, null: false
       t.date :birthday, null: false
       t.string :nickname, null: false
+      t.boolean :is_deleted, default: false, null: false
+      
       
 
       ## Trackable
