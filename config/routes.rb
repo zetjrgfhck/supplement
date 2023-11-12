@@ -29,7 +29,13 @@ get "/home/about" =>"public/homes#about" ,as: "about"
 
 scope module: :public  do
   resources :comments
-  resources :reviews
+  resources :users, only: [] do
+    resources :reviews, only: [:index]
+end
+  resources :reviews, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:create]
+  end
+
   get "users/my_page" => "users#show"
   get "users/informetion/edit" => "users#edit"
   patch "users/informetion" => "users#update"

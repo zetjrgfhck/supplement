@@ -16,7 +16,7 @@
     <% if admin_signed_in? %>
       <%= link_to "SuppleLife", admin_root_path %>
     <% else %>
-      <%= link_to "SuppleLife", root_path %>
+      <h3><%= link_to "SuppleLife", root_path %></h3>
     <% end %>
 
     <ul>
@@ -66,6 +66,7 @@
         <li>
           <%= link_to "レビューする", new_review_path %>
         </li>
+        <% end %>
     </ul>
   </nav>
 

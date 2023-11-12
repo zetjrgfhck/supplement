@@ -53,12 +53,16 @@ ActiveRecord::Schema.define(version: 2023_11_02_092354) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
     t.text "content", null: false
+    t.integer "user_id"
+    t.integer "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -66,6 +70,7 @@ ActiveRecord::Schema.define(version: 2023_11_02_092354) do
   create_table "reviews", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

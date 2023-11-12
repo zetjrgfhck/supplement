@@ -1,0 +1,26 @@
+<div>
+<p>タイトル：<%= @review.title %></p>
+<p>レビュー内容：<%= @review.content %></p>
+<p>写真：<%= image_tag @review.image %></p>
+<p>ニックネーム：<%= @review.user.nickname %></p>
+<p>性別：<%= @review.user.gender %></p>
+<p>投稿日：<%= l(@review.created_at, format: :date) %></p>
+</div>
+
+<div>
+<h4>コメント投稿</h4>
+<%= form_with model: [@review, @comment] do |f| %>
+  <%= render "layouts/error_messages", model: f.object %>
+  <%= f.text_area :content %>
+  <%= f.submit "コメントする" %>
+<% end %>
+</div>
+
+<div>
+<h4>コメント一覧(<%= @review.comments.count %>)</h4>
+  <% @review.comments.each do |comment| %>
+    <%= t('activerecord.attributes.comment.content') %><%= comment.content %>
+    <%= comment.user.nickname %>(<%= comment.user.era %>)
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+  <% end %>
+</div>
