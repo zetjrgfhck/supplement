@@ -30,8 +30,8 @@ get "/home/about" =>"public/homes#about" ,as: "about"
 scope module: :public  do
   resources :comments
   resources :users, only: [] do
-    resources :reviews, only: [:index]
-end
+    resources :reviews, only: [:index], controller: :user_reviews
+  end
   resources :reviews, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :comments, only: [:create]
   end

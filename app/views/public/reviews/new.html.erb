@@ -8,7 +8,7 @@
 <h4>レビュー内容</h4>
 <%= f.text_area :content %>
 
-<h4>写真を追加する</h4>
-<%= f.file_field :image, accept: "image/*" %>
+<h4>写真を追加</h4>
+<%= f.file_field :images, accept: "image/*", multiple: true  %>
 <%= f.submit "投稿する" %>
 <% end %>

@@ -1,16 +1,26 @@
 <div>
+  <%= flash[:notice] %>
+</div>
+
+<div>
 <p>タイトル：<%= @review.title %></p>
-<p>レビュー内容：<%= @review.content %></p>
-<p>写真：<%= image_tag @review.image %></p>
+<p>レビュー詳細：<%= @review.content %></p>
+<p>写真：</p>
+<% @review.images.each do |image| %>
+  <%= image_tag image, size: "100x100" %>
+<% end %>
 <p>ニックネーム：<%= @review.user.nickname %></p>
-<p>性別：<%= @review.user.gender %></p>
+<p>性別：<%= @review.user.gender_i18n %></p>
 <p>投稿日：<%= l(@review.created_at, format: :date) %></p>
+<% if @review.user == current_user %>
+  <%= link_to "レビュー編集", edit_review_path(@review) %>
+<% end %>
 </div>
 
 <div>
 <h4>コメント投稿</h4>
 <%= form_with model: [@review, @comment] do |f| %>
-  <%= render "layouts/error_messages", model: f.object %>
+  <%= render "layouts/error_messages", model: f.object %> <%#エラーメッセージの表示 %>
   <%= f.text_area :content %>
   <%= f.submit "コメントする" %>
 <% end %>
@@ -19,8 +29,9 @@
 <div>
 <h4>コメント一覧(<%= @review.comments.count %>)</h4>
   <% @review.comments.each do |comment| %>
-    <%= t('activerecord.attributes.comment.content') %><%= comment.content %>
-    <%= comment.user.nickname %>(<%= comment.user.era %>)
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <p><%= Comment.human_attribute_name(:content) %><%= comment.content %></p>
+    <p><%= comment.user.nickname %>(<%= comment.user.era %>)</p>
+    <p><%= comment.user.gender_i18n %></p>
+    <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
   <% end %>
 </div>

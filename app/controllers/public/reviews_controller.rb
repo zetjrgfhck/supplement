@@ -23,9 +23,31 @@ class Public::ReviewsController < ApplicationController
     @comment = Comment.new
   end
 
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      flash[:notice] = "変更を保存しました"
+      redirect_to review_path(@review.id)
+    else
+      flash[:alert] = "変更に失敗しました"
+      render :"public/reviews/edit"
+    end
+  end
+  
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to "public/reviews/index"
+  end
+
+
 private
 
   def review_params
-    params.require(:review).permit(:title, :content, :image)
+    params.require(:review).permit(:title, :content, images: [])
   end
 end

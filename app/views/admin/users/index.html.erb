@@ -1,0 +1,30 @@
+<div>
+  <h4>ユーザー一覧</h4>
+  <table>
+    <head>
+    <tr>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>ステータス</th>
+    </tr>
+    </head>
+
+    <body>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+
+          <td><%= link_to admin_user_path(user.id) do %>
+              <%= user.nickname %>
+              <% end %></td>
+
+          <td><% if user.is_deleted %>
+                退会
+               <% else %>
+                有効
+               <% end %></td>
+        <% end %>
+        </tr>
+    </body>
+  </table>
+</div>

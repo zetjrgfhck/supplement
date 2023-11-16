@@ -14,7 +14,7 @@
 <header>
   <nav>
     <% if admin_signed_in? %>
-      <%= link_to "SuppleLife", admin_root_path %>
+      <h3><%= link_to "SuppleLife", admin_root_path %></h3>
     <% else %>
       <h3><%= link_to "SuppleLife", root_path %></h3>
     <% end %>
@@ -26,7 +26,7 @@
         </li>
 
         <li>
-          <%= link_to "マイレビュー", reviews_path %>
+          <%= link_to "マイレビュー", user_reviews_path(current_user) %>
         </li>
 
         <li>

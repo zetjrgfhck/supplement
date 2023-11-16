@@ -1,0 +1,17 @@
+<div>
+  <h2>投稿内容の編集</h2>
+  <%= form_with model: @review do |f| %>
+  <%= render "layouts/error_messages", model: f.object %>
+  <h4>レビュータイトル</h4>
+  <%= f.text_field :title %>
+
+  <h4>レビュー詳細</h4>
+  <%=f.text_area :content %>
+
+  <h4>写真を追加</h4>
+  <%= f.file_field :images, accept: "image/*", multiple: true %>
+  <p><%= f.submit "変更内容を保存" %></p>
+  <%= link_to "投稿の削除", review_path(@review), method: :delete, "deta-confirm" =>"本当に削除しますか？" %>
+  <% end %>
+
+</div>
