@@ -13,14 +13,14 @@
 <p>性別：<%= @review.user.gender_i18n %></p>
 <p>投稿日：<%= l(@review.created_at, format: :date) %></p>
 <% if @review.user == current_user %>
-  <%= link_to "レビュー編集", edit_review_path(@review) %>
+  <%= link_to "レビューの編集", edit_review_path(@review) %>
 <% end %>
 </div>
 
 <div>
 <h4>コメント投稿</h4>
 <%= form_with model: [@review, @comment] do |f| %>
-  <%= render "layouts/error_messages", model: f.object %> <%#エラーメッセージの表示 %>
+  <%= render "layouts/error_messages", model: f.object %>
   <%= f.text_area :content %>
   <%= f.submit "コメントする" %>
 <% end %>

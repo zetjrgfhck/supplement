@@ -37,11 +37,11 @@ class Public::ReviewsController < ApplicationController
       render :"public/reviews/edit"
     end
   end
-  
+
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to "public/reviews/index"
+    redirect_to reviews_path
   end
 
 

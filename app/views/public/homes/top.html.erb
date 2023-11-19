@@ -3,3 +3,6 @@
 </div>
 <h1>顧客用トップページ</h1>
 <%= link_to "投稿一覧", reviews_path %>
+<%= form_with url :admin_reviews_path do  |f| %>
+  <%= f.text.field :searth, placeholder: "Search" %>
+  <% end %>

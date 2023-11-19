@@ -1,0 +1,26 @@
+<div>
+  <h4>ユーザー情報詳細</h4>
+  <table>
+    <tr><th>氏名</th>
+      <td><%= @user.last_name + @user.first_name %></td>
+    </tr>
+
+    <tr><th>メールアドレス</th>
+      <td><%= @user.email %></td>
+    </tr>
+
+    <tr><th>ニックネーム</th>
+      <td><%= @user.nickname %></td>
+    </tr>
+
+    <tr><th>生年月日</th>
+      <td><%= @user.birthday %></td>
+    </tr>
+
+    <tr><th>性別</th>
+      <td><%= @user.gender_i18n %></td>
+    </tr>
+  </table>
+  <%= link_to "ユーザー情報の編集", edit_admin_user_path(@user) %>
+
+</div>

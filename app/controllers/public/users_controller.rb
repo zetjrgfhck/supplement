@@ -20,13 +20,13 @@ class Public::UsersController < ApplicationController
   end
 
   def leave
-    current_user.update(is_deleted :true)
+    current_user.update(is_deleted: true)
     reset_session
     redirect_to root_path
   end
 
   private
     def user_params
-      params.require(:user).permit(:last_name, :first_name, :email, :nickname, :birthday, :gender)
+      params.require(:user).permit(:last_name, :first_name, :email, :nickname, :birthday, :gender, :is_deleted)
     end
 end

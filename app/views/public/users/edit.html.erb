@@ -3,29 +3,24 @@
   <%= form_with model: @user, url: users_informetion_path do |f| %>
   <%= render "layouts/error_messages", model: f.object %>
   <table>
-    <tr>
-      <th>氏名</th>
+    <tr><th>氏名</th>
       <td><%= f.text_field :last_name %><%= f.text_field :first_name %></td>
     </tr>
 
-    <tr>
-      <th>メールアドレス</th>
+    <tr><th>メールアドレス</th>
       <td><%= f.text_field :email %></td>
     </tr>
 
-    <tr>
-      <th>ニックネーム</th>
+    <tr><th>ニックネーム</th>
       <td><%= f.text_field :nickname %></td>
     </tr>
 
-    <tr>
-      <th>生年月日</th>
+    <tr><th>生年月日</th>
       <td><%= f.date_select :birthday, {start_year: 1950, end_year: 2007,
           include_blank: true, use_two_digit_numbers: true} %></td>
     </tr>
 
-    <tr>
-      <th>性別</th>
+    <tr><th>性別</th>
       <td><%= f.radio_button :gender, User.genders.key(0) %>
           <%= f.label :gender_man, User.genders_i18n[:man] %>
           <%= f.radio_button :gender, User.genders.key(1) %>
@@ -38,7 +33,7 @@
 
 <div>
   <ul>
-    <li><%= f.submit "設定内容を保存" %></li>
+    <li><%= f.submit "変更内容を保存" %></li>
     <li><%= link_to "退会手続き", users_quit_path %></li>
       <% end %>
   </ul>
