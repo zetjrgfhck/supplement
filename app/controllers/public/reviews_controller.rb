@@ -6,6 +6,7 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @reviews = Review.all
+    @reviews = Review.search(params[:keyword])
   end
 
   def create

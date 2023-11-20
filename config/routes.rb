@@ -32,7 +32,10 @@ scope module: :public  do
   resources :users, only: [] do
     resources :reviews, only: [:index], controller: :user_reviews
   end
-  resources :reviews, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+  resources :reviews do
+    collection do
+      get "search"
+    end
     resources :comments, only: [:create]
   end
 
