@@ -3,12 +3,8 @@ class Review < ApplicationRecord
   has_many :comments
   has_many :bookmarks
   has_many_attached :images
-  
-  def self.search(keyword)
-    if keyword != ""
-      Review.where('text LIKE(?)', "%#{keyword}%")
-    else
-      Review.all
-    end
+
+  def favorited_by?(user)
+    bookmarks.exists?(user_id: user.id)
   end
 end

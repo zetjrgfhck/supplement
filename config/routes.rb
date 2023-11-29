@@ -33,11 +33,10 @@ scope module: :public  do
     resources :reviews, only: [:index], controller: :user_reviews
   end
   resources :reviews do
-    collection do
-      get "search"
-    end
     resources :comments, only: [:create]
+    resource :bookmark, only: [:create, :destroy]
   end
+
 
   get "users/my_page" => "users#show"
   get "users/informetion/edit" => "users#edit"

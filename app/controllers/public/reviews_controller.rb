@@ -5,8 +5,9 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all
-    @reviews = Review.search(params[:keyword])
+    keyword = params[:keyword]
+    @reviews = Review.where("title LIKE ?", "%#{keyword}%").all
+    #@reviews = Review.all
   end
 
   def create
@@ -49,6 +50,6 @@ class Public::ReviewsController < ApplicationController
 private
 
   def review_params
-    params.require(:review).permit(:title, :content, images: [])
+    params.require(:review).permit(:title, :content, :keyword, images: [])
   end
 end
