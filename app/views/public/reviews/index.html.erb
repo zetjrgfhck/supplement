@@ -1,8 +1,10 @@
 <div>
   <h4>投稿一覧</h4>
   <%= form_with url:reviews_path, local: true, method: :get do |f| %>
-  <%= f.text_field :keyword, placeholder: "例) 商品名、成分、悩み" %>
-  <%= f.submit "検索" %>
+    <%= f.text_field :keyword, placeholder: "例) 商品名、成分、悩み" %>
+    <%#= f.text_field :column, placeholder: "column" %>
+    <%= f.select :order_by, [["昇順", "ASC"], ["降順", "DESC"], ["コメントの多い順", "COMMENT"], ["いいねの多い順", "BOOKMARK"]] %>
+    <%= f.submit "検索" %>
   <% end %>
 
   <% @reviews.each do |review| %>
@@ -11,6 +13,7 @@
     <% end %>
     <p><%= review.content %></p>
     <%= link_to "#{review.comments.count} コメント", review_path(review.id) %>
+    <p><%= review.bookmarks.count %> いいね</p>
     <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
   <% end %>
 </div>

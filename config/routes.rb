@@ -31,6 +31,8 @@ scope module: :public  do
   resources :comments
   resources :users, only: [] do
     resources :reviews, only: [:index], controller: :user_reviews
+    resources :comments, only: [:index], controller: :user_comments
+    resources :bookmarks, only: [:index], controller :user_bookmaarks
   end
   resources :reviews do
     resources :comments, only: [:create]
@@ -38,6 +40,8 @@ scope module: :public  do
   end
 
 
+  
+  
   get "users/my_page" => "users#show"
   get "users/informetion/edit" => "users#edit"
   patch "users/informetion" => "users#update"

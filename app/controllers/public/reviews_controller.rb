@@ -6,8 +6,17 @@ class Public::ReviewsController < ApplicationController
 
   def index
     keyword = params[:keyword]
-    @reviews = Review.where("title LIKE ?", "%#{keyword}%").all
-    #@reviews = Review.all
+    order_by = params[:order_by] # ASC or DESC
+    if order_by == "ASC"
+      @reviews = Review.where("title LIKE ?", "%#{keyword}%").order(created_at: :asc)
+    elsif order_by == "BOOKMARK"
+      @reviews = Review.includes(:bookmarks).sort {|a,b| b.bookmarks.size <=> a.bookmarks.size}
+    elsif order_by == "COMMENT"
+      @reviews = Review.includes(:comments).sort {|a,b| b.comments.size <=> a.comments.size}
+    else
+      @reviews = Review.where("title LIKE ?", "%#{keyword}%").order(created_at: :desc)
+    end
+    # @reviews = Review.all
   end
 
   def create

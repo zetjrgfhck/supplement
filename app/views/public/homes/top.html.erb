@@ -1,9 +1,23 @@
 <div>
   <%= flash[:notice] %>
 </div>
+<div>
 <h1>顧客用トップページ</h1>
 <%= link_to "投稿一覧", reviews_path %>
 <%= form_with url:reviews_path, local: true, method: :get do |f| %>
   <%= f.text_field :keyword, placeholder: "例) 商品名、成分、悩み" %>
   <%= f.submit "検索" %>
   <% end %>
+</div>
+
+ <div>
+ <% @reviews.each do |review| %>
+    <%= link_to review_path(review.id) do %>
+    <%= review.title %>
+    <% end %>
+    <p><%= review.content %></p>
+    <%= link_to "#{review.comments.count} コメント", review_path(review.id) %>
+    <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
+  <% end %>
+  <%= paginate @reviews %>
+  </div>
