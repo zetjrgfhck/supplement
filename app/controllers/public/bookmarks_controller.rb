@@ -4,7 +4,6 @@ class Public::BookmarksController < ApplicationController
     review = Review.find(params[:review_id])
     bookmark = current_user.bookmarks.new(review_id: review.id)
     bookmark.save
-
   end
 
   def destroy

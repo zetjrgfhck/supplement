@@ -25,6 +25,11 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def reviews
+    @user = User.find(params[:id])
+    @reviews = @user.reviews
+  end
+
   private
     def user_params
       params.require(:user).permit(:last_name, :first_name, :email, :nickname, :birthday, :gender, :is_deleted)

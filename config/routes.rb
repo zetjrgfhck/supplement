@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'user_/comments'
 # 顧客用
 # URL /users/sign_in ...
 devise_for :users, controllers: {
@@ -30,9 +31,11 @@ get "/home/about" =>"public/homes#about" ,as: "about"
 scope module: :public  do
   resources :comments
   resources :users, only: [] do
-    resources :reviews, only: [:index], controller: :user_reviews
-    resources :comments, only: [:index], controller: :user_comments
-    resources :bookmarks, only: [:index], controller :user_bookmaarks
+    member do
+    get :reviews
+    get :comments
+    get :bookmarks
+   end
   end
   resources :reviews do
     resources :comments, only: [:create]
