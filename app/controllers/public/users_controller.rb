@@ -38,9 +38,9 @@ class Public::UsersController < ApplicationController
 
   def bookmarks
     @user = User.find(params[:id])
-    bookmarks = Bookmark.where(user_id: @user.id).pluck(:review_id)
-    @bookmark_reviews = Review.find(bookmarks)
-    @reviews = Review.find(params[:id])
+    @bookmarks = Bookmark.where(user_id: @user.id)#.pluck(:review_id)
+    #@bookmark_reviews = Review.find(bookmarks)
+    #@reviews = Review.find(params[:id])
   end
 
 
