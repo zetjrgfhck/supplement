@@ -30,6 +30,21 @@ class Public::UsersController < ApplicationController
     @reviews = @user.reviews
   end
 
+  def comments
+    @user = User.find(params[:id])
+    @reviews = @user.reviews
+    @comments = @user.comments
+  end
+
+  def bookmarks
+    @user = User.find(params[:id])
+    bookmarks = Bookmark.where(user_id: @user.id).pluck(:review_id)
+    @bookmark_reviews = Review.find(bookmarks)
+    @reviews = Review.find(params[:id])
+  end
+
+
+
   private
     def user_params
       params.require(:user).permit(:last_name, :first_name, :email, :nickname, :birthday, :gender, :is_deleted)

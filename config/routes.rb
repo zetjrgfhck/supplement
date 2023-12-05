@@ -38,13 +38,13 @@ scope module: :public  do
    end
   end
   resources :reviews do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
     resource :bookmark, only: [:create, :destroy]
   end
 
 
-  
-  
+
+
   get "users/my_page" => "users#show"
   get "users/informetion/edit" => "users#edit"
   patch "users/informetion" => "users#update"

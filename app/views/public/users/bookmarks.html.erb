@@ -1,6 +1,6 @@
 <div>
-  <h4><%= @user.nickname %>さんの投稿一覧</h4>
-  <% @reviews.each do |review| %>
+  <h4><%= @user.nickname %>さんのブックマークした投稿一覧</h4>
+  <% @bookmark_reviews.each do |review| %>
     <%= link_to review_path(review.id) do %>
     <%= review.title %>
     <% end %>

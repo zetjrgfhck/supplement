@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SuppleLife</title>
+    <title>サプリライフ</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,15 +11,16 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-<header>
-  <nav>
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
     <% if admin_signed_in? %>
-      <h3><%= link_to "SuppleLife", admin_root_path %></h3>
+      <%= link_to "サプリライフ", admin_root_path %>
     <% else %>
-      <h3><%= link_to "SuppleLife", root_path %></h3>
+      <%= link_to "サプリライフ", root_path %>
     <% end %>
 
-    <ul>
+    <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
         <li>
           <%= link_to "マイページ", users_my_page_path %>
@@ -51,26 +52,25 @@
         </li>
 
       <% else %>
-        <li>
+        <li class="nav-item">
           <%= link_to "このサイトについて", about_path %>
         </li>
 
-        <li>
+        <li class="nav-item">
           <%= link_to "新規登録", new_user_registration_path %>
         </li>
 
-        <li>
+        <li class="nav-item">
           <%= link_to "ログイン", new_user_session_path %>
         </li>
 
-        <li>
+        <li class="nav-item">
           <%= link_to "レビューする", new_review_path %>
         </li>
         <% end %>
     </ul>
+  </div>
   </nav>
-
-
 </header>
 
 <%= yield %>
