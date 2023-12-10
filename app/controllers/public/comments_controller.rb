@@ -17,7 +17,7 @@ class Public::CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     comment.destroy
     flash[:notice] = "コメントを削除しました"
-    redirect_to review_path(params[:review_id])
+    redirect_to request.referer
   end
 
   private

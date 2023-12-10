@@ -1,1 +1,26 @@
 @use '~bootstrap/scss/bootstrap';
+
+.txt-limit {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* 任意の行数を指定 */
+}
+
+.image_input_btn{
+  display: block;
+  background-color: #228B22;
+  width: 180px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding-top: 2px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+      }
+
+.image_form{
+  display: none;
+}

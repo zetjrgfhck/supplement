@@ -2,8 +2,8 @@
   <%= flash[:notice] %>
 </div>
 
-<div>
-<h4>アカウント詳細</h4>
+<div class="container">
+<h4>会員情報</h4>
 <table>
   <tr>
     <th>氏名</th>
@@ -34,4 +34,5 @@
 <p><%= link_to "プロフィール情報を編集する", users_informetion_edit_path(@user) %></p>
 <p><%= link_to "コメントした投稿を確認する", comments_user_path(@user) %></p>
 <p><%= link_to "ブックマークした投稿を確認する", bookmarks_user_path(@user) %></p>
+</div>
 </div>

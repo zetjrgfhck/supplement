@@ -1,10 +1,7 @@
-<div>
-  <h4>本当に退会しますか？</h4>
-  <h6>
-    <p>退会すると、投稿したレビューやコメント、</p></br>
-    <p>ブックマーク情報が削除されてしまいます。</p></br>
-    <p>それでも退会しますか？</p>
-  </h6>
-  <%= link_to "退会しない", users_my_page_path %>
-  <%= link_to "退会する", users_leave_path, method: :patch,"data-confirm" => "退会しますか？" %>
+<div class="container">
+  <h5>退会すると投稿したレビューやコメント、</h5>
+  <h5>ブックマーク情報が削除されてしまいます。</h5>
+  <h5>それでも退会しますか？</h5>
+  <%= link_to "退会しない", users_my_page_path, class: "btn btn-success" %>
+  <%= link_to "退会する", users_leave_path, class: "btn btn-danger", method: :patch,"data-confirm" => "退会しますか？" %>
 </div>

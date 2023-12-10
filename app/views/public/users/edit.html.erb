@@ -1,39 +1,47 @@
-<div>
-  <h4>登録情報編集</h4>
+<div class="container">
+  <h2>登録情報編集</h2>
+  <div class="row">
   <%= form_with model: @user, url: users_informetion_path do |f| %>
   <%= render "layouts/error_messages", model: f.object %>
-  <table>
-    <tr><th>氏名</th>
-      <td><%= f.text_field :last_name %><%= f.text_field :first_name %></td>
-    </tr>
 
-    <tr><th>メールアドレス</th>
-      <td><%= f.text_field :email %></td>
-    </tr>
+    <div class="field">
+      <%= f.label :last_name, "氏名" %><br />
+      <%= f.text_field :last_name, autofocus: true, placeholder: "姓" %>
+      <%= f.text_field :first_name, placeholder: "名" %>
+    </div>
 
-    <tr><th>ニックネーム</th>
-      <td><%= f.text_field :nickname %></td>
-    </tr>
+    <div class="field">
+      <%= f.label :email, "メールアドレス" %><br />
+      <%= f.text_field :email, placeholder: "@example.com" %>
+      <p>※既に登録済みのメールアドレスは使用できません。</p>
+    </div>
 
-    <tr><th>生年月日</th>
-      <td><%= f.date_select :birthday, {start_year: 1950, end_year: 2007,
-          include_blank: true, use_two_digit_numbers: true} %></td>
-    </tr>
+    <div class="field">
+      <%= f.label :nickname, "ニックネーム" %><br />
+      <%= f.text_field :nickname %>
+      <p>※ニックネームは公開されますので特定に繋がる個人情報の入力は避けてください。</p>
+    </div>
 
-    <tr><th>性別</th>
-      <td><%= f.radio_button :gender, User.genders.key(0) %>
-          <%= f.label :gender_man, User.genders_i18n[:man] %>
-          <%= f.radio_button :gender, User.genders.key(1) %>
-          <%= f.label :gender_woman, User.genders_i18n[:woman] %>
-          <%= f.radio_button :gender, User.genders.key(2) %>
-          <%= f.label :gender_other, User.genders_i18n[:other] %></td>
-    </tr>
-  </table>
-</div>
+    <div class="field">
+      <%= f.label :birthday, "生年月日" %><br />
+      <%= f.date_select :birthday, {start_year: 1940, end_year: 2020,
+          include_blank: true, use_two_digit_numbers: true} %>
+    </div>
+
+    <div class="field">
+      <%= f.label :gender, "性別" %><br />
+      <%= f.radio_button :gender, User.genders.key(0) %>
+        <%= f.label :gender_man, User.genders_i18n[:man] %>
+        <%= f.radio_button :gender, User.genders.key(1) %>
+        <%= f.label :gender_woman, User.genders_i18n[:woman] %>
+        <%= f.radio_button :gender, User.genders.key(2) %>
+        <%= f.label :gender_other, User.genders_i18n[:other] %>
+      </div>
+    </div>
 
 <div>
   <ul>
-    <li><%= f.submit "変更内容を保存" %></li>
+    <li><%= f.submit "変更内容を保存", class: "btn btn-success" %></li>
     <li><%= link_to "退会手続き", users_quit_path %></li>
       <% end %>
   </ul>

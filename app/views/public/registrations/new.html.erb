@@ -1,77 +1,71 @@
 <div class="container">
-<h2>会員登録</h2>
+  <div class="row">
+    <div class="col-12">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
+    <h2>会員登録</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<%= render "public/shared/error_messages", resource: resource %>
-
-  <tbody>
-  <table>
-    <div class="field">
-    <tr><th>氏名</th>
-      <td>(姓)<%= f.text_field :last_name, autofocus: true, autocomplete: "name" %></td>
-      <td>(名)<%= f.text_field :first_name, autofocus: true, autocomplete: "name" %></td>
-    </tr>
-    </div>
-
-    <div class="field">
-    <tr><th>メールアドレス</th>
-      <td><%= f.text_field :email, autofocus: true, autocomplete: "email" %></td>
-      <p>※既に登録済みのメールアドレスは使用できません</p>
-    </tr>
-    </div>
-
-    <div class="field">
-    <tr><th>ニックネーム</th>
-      <td><%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %></td>
-      <p>※ニックネームは公開されますので特定に繋がる個人情報の入力は避けてください</p>
-    </tr>
-    </div>
-
-    <div class="field">
-      <tr><th>生年月日</th>
-        <td><%= f.date_select :birthday, {start_year: 1950, end_year: 2007,
-                include_blank: true, use_two_digit_numbers: true} %></td>
-      </tr>
-      </div>
-
-    <div class="field">
-      <tr><th>性別</th>
-        <td><%= f.radio_button :gender, User.genders.key(0) %>
-            <%= f.label :gender_man, User.genders_i18n[:man] %>
-            <%= f.radio_button :gender, User.genders.key(1) %>
-            <%= f.label :gender_woman, User.genders_i18n[:woman] %>
-            <%= f.radio_button :gender, User.genders.key(2) %>
-            <%= f.label :gender_other, User.genders_i18n[:other] %></td>
-      </tr>
-      </div>
-
-    <div class="field">
-      <tr><th>パスワード</th>
-        <td>
-            <%= f.password_field :password, autocomplete: "new-password" %>
-            <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 英数字含めた８文字以上)</em>
-            <% end %><br /></td>
-      </tr>
+      <div class="field">
+        <%= f.label :last_name, "氏名" %><br />
+        <%= f.text_field :last_name, autofocus: true, placeholder: "姓"%>
+        <%= f.text_field :first_name, placeholder: "名" %>
       </div>
 
       <div class="field">
-        <tr><th>パスワード(再入力)</th>
-          <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-        </tr>
-        </div>
-    </table>
-  </tbody>
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.text_field :email, placeholder: "@example.com" %>
+        <p>※既に登録済みのメールアドレスは使用できません。</p>
+      </div>
 
-    <div class="actions">
-      <%= f.submit "登録する" %>
+      <div class="field">
+        <%= f.label :nickname, "ニックネーム" %><br />
+        <%= f.text_field :nickname, placeholder: "後から変更可能です" %>
+        <p>※ニックネームは公開されますので特定に繋がる個人情報の入力は避けてください。</p>
+      </div>
+
+      <div class="field">
+        <%= f.label :birthday, "生年月日" %><br />
+        <%= f.date_select :birthday, {start_year: 1940, end_year: 2020,
+            include_blank: true, use_two_digit_numbers: true} %>
+      </div>
+
+      <div class="field">
+        <%= f.label :gender, "性別" %><br />
+        <%= f.radio_button :gender, User.genders.key(0) %>
+        <%= f.label :gender_man, User.genders_i18n[:man] %>
+        <%= f.radio_button :gender, User.genders.key(1) %>
+        <%= f.label :gender_woman, User.genders_i18n[:woman] %>
+        <%= f.radio_button :gender, User.genders.key(2) %>
+        <%= f.label :gender_other, User.genders_i18n[:other] %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "パスワード"%><br />
+        <%= f.password_field :password, placeholder: "6文字以上" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, "パスワード再入力" %><br />
+        <%= f.password_field :password_confirmation, placeholder: "再度入力してください" %>
+      </div>
     </div>
-    <% end %>
+  </div>
 
-    <div>
+  <div class="row">
+    <div class="col-12">
+      <div class="actions">
+        <%= f.submit "登録する", class: "btn btn-success" %>
+      </div>
+        <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
       <h4>すでに登録済みの方</h4>
       <span><%= link_to new_user_session_path do %>こちら</span>
-      <% end %>
+            <% end %>
       <span>からログインしてください。</span>
     </div>
+  </div>
 </div>

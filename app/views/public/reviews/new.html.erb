@@ -1,14 +1,31 @@
-<h2>レビュー投稿フォーム</h2>
-<%#入力欄に一例、注意書きを書く %>
-<%= form_with model: @review do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="form-label">
+        <h2>レビュー投稿フォーム</h2>
+          <%= form_with model: @review do |f| %>
+          <h5>レビュータイトル</h5>
+          <%= f.text_field :title, class: "form-control", size: "5x5", autofocus: true, placeholder: "製品名や成分を交えると伝わりやすいです" %>
+      </div>
+    </div>
+  </div>
 
-<h4>レビュータイトル</h4>
-<%= f.text_field :title %>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-label">
+        <h5>レビュー本文</h5>
+          <%= f.text_area :content, class: "form-control", size: "5x5", placeholder: "実感できた効果、飲みやすさなど一番伝えたいことを書いてください" %>
+      </div>
+    </div>
+  </div>
 
-<h4>レビュー内容</h4>
-<%= f.text_area :content %>
-
-<h4>写真を追加</h4>
-<%= f.file_field :images, accept: "image/*", multiple: true  %>
-<%= f.submit "投稿する" %>
-<% end %>
+  <div class="row">
+    <div class="col-12">
+      <h5>写真を追加</h5>
+        <%= f.label :images, "画像をアップロード", class: "image_input_btn" %>
+        <%= f.file_field :images, accept: "image/*", multiple: true, class: "image_form" %>
+        <%= f.submit "投稿する", class: "btn btn-success" %>
+        <% end %>
+    </div>
+  </div>
+</div>

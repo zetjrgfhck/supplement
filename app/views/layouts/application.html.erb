@@ -13,59 +13,59 @@
 
 <header class="shadow-sm">
   <nav class="navbar navbar-expand-lg">
-    <div class="container">
+    <div class="container-fluid">
     <% if admin_signed_in? %>
-      <%= link_to "サプリライフ", admin_root_path %>
+      <%= link_to "サプリライフ", admin_root_path, class: "navbar-brand" %>
     <% else %>
-      <%= link_to "サプリライフ", root_path %>
+      <%= link_to "サプリライフ", root_path, class: "navbar-brand" %>
     <% end %>
 
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
-        <li>
-          <%= link_to "マイページ", users_my_page_path %>
+        <li class="nav-item">
+          <%= link_to "マイページ", users_my_page_path, class: "btn btn-primary" %>
         </li>
 
-        <li>
-          <%= link_to "マイレビュー", reviews_user_path(current_user) %>
+        <li class="nav-item">
+          <%= link_to "マイレビュー", reviews_user_path(current_user), class: "btn btn-primary" %>
         </li>
 
-        <li>
-          <%= link_to "レビューする", new_review_path %>
+        <li class="nav-item">
+          <%= link_to "レビューする", new_review_path, class: "btn btn-primary" %>
         </li>
 
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-primary", method: :delete %>
         </li>
 
       <% elsif admin_signed_in? %>
-        <li>
-          <%= link_to "ユーザー一覧", admin_users_path %>
+        <li class="nav-item">
+          <%= link_to "ユーザー一覧", admin_users_path, class: "btn btn-primary" %>
         </li>
 
-        <li>
-          <%=link_to "レビュー一覧", admin_reviews_path %>
+        <li class="nav-item">
+          <%=link_to "レビュー一覧", admin_reviews_path, class: "btn btn-primary" %>
         </li>
 
-        <li>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-primary", method: :delete %>
         </li>
 
       <% else %>
         <li class="nav-item">
-          <%= link_to "このサイトについて", about_path %>
+          <%= link_to "このサイトについて", about_path, class: "btn btn-primary" %>
         </li>
 
         <li class="nav-item">
-          <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
         </li>
 
         <li class="nav-item">
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
         </li>
 
         <li class="nav-item">
-          <%= link_to "レビューする", new_review_path %>
+          <%= link_to "レビューする", new_review_path, class: "btn btn-primary" %>
         </li>
         <% end %>
     </ul>
