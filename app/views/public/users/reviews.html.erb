@@ -1,12 +1,19 @@
-<div>
-  <h4><%= @user.nickname %>さんの投稿一覧</h4>
-  <% @reviews.each do |review| %>
-    <%= link_to review_path(review.id) do %>
-    <%= review.title %>
-    <% end %>
-    <p><%= review.content %></p>
-    <%= link_to "#{review.comments.count} コメント", review_path(review.id) %>
-    <p><%= review.bookmarks.count %> いいね</p>
-    <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-4 border-bottom border-5">
+      <h4 class="border-bottom pt-2 border-5 border-dark">
+      <%= @user.nickname %>さんの投稿一覧</h4>
+        <% @reviews.each do |review| %>
+          <div class="border-bottom pt-2 border-5 border-dark">
+            <%= link_to review_path(review.id) do %>
+            <%= review.title %>
+            <% end %>
+            <p><%= review.content.truncate(30) %></p>
+            <%= link_to "#{review.comments.count} コメント", review_path(review.id) %>
+            <p><%= review.bookmarks.count %> いいね</p>
+            <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
+            </div>
+          <% end %>
+    </div>
+  </div>
 </div>

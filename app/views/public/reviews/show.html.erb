@@ -2,53 +2,59 @@
   <%= flash[:notice] %>
 </div>
 
-<div>
-<p>タイトル：<%= @review.title %></p>
-<p>レビュー詳細：<%= @review.content %></p>
-<p>写真：</p>
-<% @review.images.each do |image| %>
-  <%= image_tag image, size: "100x100" %>
-<% end %>
-<p>ニックネーム：<%= @review.user.nickname %></p>
-<p>性別：<%= @review.user.gender_i18n %></p>
-<p>投稿日：<%= l(@review.created_at, format: :date) %></p>
-<% if current_user.present? %>
-<% if @review.favorited_by?(current_user) %>
-    <p><%= link_to review_bookmark_path(@review), method: :delete do %>
-        ♥<%= @review.bookmarks.count %> いいね
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <p><%= @review.title %></p>
+      <p><%= @review.content %></p>
+      <p>写真</p>
+      <% @review.images.each do |image| %>
+      <%= image_tag image, size: "100x100" %>
       <% end %>
-    </p>
-<% else %>
-    <p><%= link_to review_bookmark_path(@review), method: :post do %>
-        ♡<%= @review.bookmarks.count %> いいね
+      <p>ニックネーム：<%= @review.user.nickname %></p>
+      <p>性別：<%= @review.user.gender_i18n %></p>
+      <p>投稿日：<%= l(@review.created_at, format: :date) %></p>
+        <% if current_user.present? %>
+          <% if @review.favorited_by?(current_user) %>
+            <p><%= link_to review_bookmark_path(@review), method: :delete do %>
+            ♥<%= @review.bookmarks.count %> いいね
+          <% end %></p>
+          <% else %>
+            <p><%= link_to review_bookmark_path(@review), method: :post do %>
+            ♡<%= @review.bookmarks.count %> いいね
+          <% end %></p>
+        <% end %>
       <% end %>
-    </p>
-<% end %>
-<% end %>
+    
+      <% if @review.user == current_user %>
+        <%= link_to "レビューの編集", edit_review_path(@review) %>
+      <% end %>
+    </div>
+  </div>
 
-<% if @review.user == current_user %>
-  <%= link_to "レビューの編集", edit_review_path(@review) %>
-<% end %>
-</div>
+  <div class="row">
+    <div class="col-12">
+      <h5>コメント投稿</h5>
+        <%= form_with model: [@review, @comment] do |f| %>
+        <%= render "layouts/error_messages", model: f.object %>
+        <p><%= f.text_area :content %></p>
+        <p><%= f.submit "コメントする", class: "btn btn-success" %></p>
+        <% end %>
+    </div>
+  </div>
 
-<div>
-<h4>コメント投稿</h4>
-<%= form_with model: [@review, @comment] do |f| %>
-  <%= render "layouts/error_messages", model: f.object %>
-  <%= f.text_area :content %>
-  <%= f.submit "コメントする" %>
-<% end %>
-</div>
-
-<div>
-<h4>コメント一覧(<%= @review.comments.count %>)</h4>
-  <% @review.comments.each do |comment| %>
-    <p><%= Comment.human_attribute_name(:content) %><%= comment.content %></p>
-    <% if comment.user == current_user %>
-      <%= link_to "削除", comment_path(comment), method: :delete, "data-confirm" => "コメント削除しますか？" %>
-    <% end %>
-    <p><%= comment.user.nickname %>(<%= comment.user.era %>)</p>
-    <p><%= comment.user.gender_i18n %></p>
-    <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-  <% end %>
+  <div class ="row">
+    <div class="col-12">
+      <h5>最新コメント(<%= @review.comments.count %>)</h5>
+        <% @review.comments.each do |comment| %>
+        <p><%= Comment.human_attribute_name(:content) %><%= comment.content %></p>
+          <% if comment.user == current_user %>
+            <%= link_to "削除", comment_path(comment), method: :delete, "data-confirm" => "コメント削除しますか？" %>
+          <% end %>
+        <p><%= comment.user.nickname %>(<%= comment.user.era %>)</p>
+        <p><%= comment.user.gender_i18n %></p>
+        <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -39,10 +39,9 @@
       </div>
     </div>
 
-<div>
-  <ul>
-    <li><%= f.submit "変更内容を保存", class: "btn btn-success" %></li>
-    <li><%= link_to "退会手続き", users_quit_path %></li>
-      <% end %>
-  </ul>
+  <div class="row">
+    <p><%= f.submit "変更内容を保存", class: "btn btn-success" %></p>
+    <p><%= link_to "退会手続き", users_quit_path, class: "btn btn-light" %></p>
+       <% end %>
+  </div>
 </div>

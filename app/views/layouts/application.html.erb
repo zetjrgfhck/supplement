@@ -14,64 +14,53 @@
 <header class="shadow-sm">
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-    <% if admin_signed_in? %>
-      <%= link_to "サプリライフ", admin_root_path, class: "navbar-brand" %>
-    <% else %>
-      <%= link_to "サプリライフ", root_path, class: "navbar-brand" %>
-    <% end %>
+      <% if admin_signed_in? %>
+        <%= link_to "サプリライフ", admin_root_path, class: "navbar-brand" %>
+      <% else %>
+        <%= link_to "サプリライフ", root_path, class: "navbar-brand" %>
+      <% end %>
 
-    <ul class="navbar-nav ml-auto">
-      <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "マイページ", users_my_page_path, class: "btn btn-primary" %>
-        </li>
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item pr-3">
+            <%= link_to "マイページ", users_my_page_path, class: "btn btn-primary" %></li>
 
-        <li class="nav-item">
-          <%= link_to "マイレビュー", reviews_user_path(current_user), class: "btn btn-primary" %>
-        </li>
+          <li class="nav-item pr-3">
+            <%= link_to "マイレビュー", reviews_user_path(current_user), class: "btn btn-primary" %></li>
 
-        <li class="nav-item">
-          <%= link_to "レビューする", new_review_path, class: "btn btn-primary" %>
-        </li>
+          <li class="nav-item pr-3">
+          <%= link_to "レビューする", new_review_path, class: "btn btn-primary" %></li>
 
-        <li class="nav-item">
+        <li class="nav-item pr-3">
           <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-primary", method: :delete %>
         </li>
 
-      <% elsif admin_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "ユーザー一覧", admin_users_path, class: "btn btn-primary" %>
-        </li>
+        <% elsif admin_signed_in? %>
+          <li class="nav-item pr-3">
+            <%= link_to "ユーザー一覧", admin_users_path, class: "btn btn-primary" %></li>
 
-        <li class="nav-item">
-          <%=link_to "レビュー一覧", admin_reviews_path, class: "btn btn-primary" %>
-        </li>
+          <li class="nav-item pr-3">
+            <%=link_to "レビュー一覧", admin_reviews_path, class: "btn btn-primary" %></li>
 
-        <li class="nav-item">
-          <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-primary", method: :delete %>
-        </li>
+          <li class="nav-item pr-3">
+            <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-primary", method: :delete %></li>
 
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "このサイトについて", about_path, class: "btn btn-primary" %>
-        </li>
+        <% else %>
+          <li class="nav-item pr-3">
+          <%= link_to "このサイトについて", about_path, class: "btn btn-primary" %></li>
 
-        <li class="nav-item">
-          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
-        </li>
+          <li class="nav-item pr-3">
+            <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %></li>
 
-        <li class="nav-item">
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
-        </li>
+          <li class="nav-item pr-3">
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %></li>
 
-        <li class="nav-item">
-          <%= link_to "レビューする", new_review_path, class: "btn btn-primary" %>
-        </li>
+          <li class="nav-item pr-3">
+            <%= link_to "レビューする", new_review_path, class: "btn btn-primary" %></li>
         <% end %>
-    </ul>
-  </div>
+      </ul>
+    </div>
   </nav>
 </header>
-
 <%= yield %>
 </html>

@@ -23,8 +23,6 @@ namespace :admin do
 
   end
 
-
-
 root to: "public/homes#top"
 get "/home/about" =>"public/homes#about" ,as: "about"
 
@@ -41,9 +39,6 @@ scope module: :public  do
     resources :comments, only: [:create, :destroy]
     resource :bookmark, only: [:create, :destroy]
   end
-
-
-
 
   get "users/my_page" => "users#show"
   get "users/informetion/edit" => "users#edit"

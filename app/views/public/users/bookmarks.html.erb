@@ -1,14 +1,21 @@
-<div>
-  <h4><%= @user.nickname %>さんのブックマークした投稿一覧</h4>
-  <% @bookmarks.each do |bookmark| %>
-  <% if bookmark.review then %>
-    <%= link_to review_path(bookmark.review.id) do %>
-    <%= bookmark.review.title %>
-    <% end %>
-    <p><%= bookmark.review.content %></p>
-    <%= link_to "#{bookmark.review.comments.count} コメント", review_path(bookmark.review.id) %>
-    <p><%= bookmark.review.bookmarks.count %> いいね</p>
-    <p><%= bookmark.review.created_at.strftime('%Y/%m/%d') %></p>
-  <% end %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-4 border-bottom border-5">
+      <h4 class="border-bottom pt-2 border-5 border-dark">
+        <%= @user.nickname %>さんのブックマークした投稿一覧</h4>
+          <% @bookmarks.each do |bookmark| %>
+            <% if bookmark.review then %>
+              <div class="border-bottom pt-2 border-5 border-dark">
+                <%= link_to review_path(bookmark.review.id) do %>
+                <%= bookmark.review.title %>
+                <% end %>
+                <p><%= bookmark.review.content.truncate(30) %></p>
+                <%= link_to "#{bookmark.review.comments.count} コメント", review_path(bookmark.review.id) %>
+                <p><%= bookmark.review.bookmarks.count %> いいね</p>
+                <p><%= bookmark.review.created_at.strftime('%Y/%m/%d') %></p>
+              </div>
+            <% end %>
+          <% end %>
+    </div>
+  </div>
 </div>
