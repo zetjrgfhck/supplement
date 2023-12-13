@@ -1,11 +1,31 @@
-<div>
-  <h4>投稿一覧</h4>
-  <% @reviews.each do |review| %>
-    <%= link_to admin_review_path(review.id) do %>
-    <%= review.title %>
+<div class="container">
+  <div class="my-4">
+    <%= form_with url:reviews_path, local: true, method: :get do |f| %>
+      <div class="row">
+        <%= f.text_field :keyword, class: "form-control col-4", placeholder: "例) 商品名、成分、悩み" %>
+        <%= f.select :order_by, [["昇順", "ASC"], ["降順", "DESC"], ["コメントの多い順", "COMMENT"], ["いいねの多い順", "BOOKMARK"]] %>
+        <%= f.submit "検索",class: "btn btn-secondary ml-2" %>
+      </div>
     <% end %>
-    <p><%= review.content %></p>
-    <%= link_to "#{review.comments.count} コメント", review_path(review.id) %>
-    <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
-  <% end %>
+  </div>
+
+  <div class="row">
+    <% @reviews.each do |review| %>
+      <div class="col-6">
+        <div class="card m-3">
+          <div class="card-body">
+            <%= link_to admin_review_path(review.id) do %>
+            <h5 class="card-title"><%= review.title %></h5>
+            <% end %>
+            <div class="card-trxt">
+              <p class="txt-limit"><%= review.content.truncate(60) %></p>
+              <%= link_to "#{review.comments.count} コメント", review_path(review.id) %>
+              <p><%= review.bookmarks.count %> いいね</p>
+              <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

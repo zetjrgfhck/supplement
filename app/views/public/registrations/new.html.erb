@@ -48,23 +48,18 @@
         <%= f.label :password_confirmation, "パスワード再入力" %><br />
         <%= f.password_field :password_confirmation, placeholder: "再度入力してください" %>
       </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12 mt-3">
-      <div class="actions">
+    
+      <div class="actions mt-2">
         <%= f.submit "登録する", class: "btn btn-success" %>
         <% end %>
-      </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
       <h4>すでに登録済みの方</h4>
-      <span><%= link_to new_user_session_path do %>こちら</span>
-            <% end %>
+      <span><%= link_to new_user_session_path do %>こちら
+            <% end %></span>
       <span>からログインしてください。</span>
     </div>
   </div>

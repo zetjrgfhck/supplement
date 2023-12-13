@@ -1,15 +1,17 @@
 <div>
   <%= flash[:notice] %>
 </div>
+
 <div class="container">
-  <div class="row">
-    <div class="col-12 mt-5">
-      <%= form_with url: reviews_path, local: true, method: :get do |f| %>
-        <%= f.text_field :keyword, class: "form-control w-50", placeholder: "例) 商品名、成分、悩み" %>
-        <%= f.submit "検索",class: "btn btn-secondary" %>
-      <% end %>
+  <div class="my-4">
+    <%= form_with url: reviews_path, local: true, method: :get do |f| %>
+    <div class="row">
+      <%= f.text_field :keyword, class: "form-control col-4", placeholder: "例) 商品名、成分、悩み" %>
+      <%= f.submit "検索",class: "btn btn-secondary ml-2" %>
     </div>
+  <% end %>
   </div>
+
   <div class="row">
     <% @reviews.each do |review| %>
       <div class="col-3">
@@ -31,14 +33,12 @@
     <div class="col-12">
       <div class="row">
         <div class="col-10"></div>
-        <div class="col-2">
+        <div class="col-2 mb-3">
           <%= link_to "投稿一覧へ", reviews_path %>
         </div>
       </div>
     </div>
   </div>
-
-
 
   <div class="row">
     <% @new_comment_reviews.each do |review| %>

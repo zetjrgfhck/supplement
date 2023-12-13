@@ -1,38 +1,43 @@
-<div>
-  <h4>ユーザー情報編集</h4>
-  <%= form_with model: @user, url: admin_user_path do |f| %>
-  <%= render "layouts/error_messages", model: f.object %>
-
-  <table>
-    <tr><th>氏名</th>
-      <td><%= f.text_field :last_name %><%= f.text_field :first_name %></td>
-    </tr>
-
-    <tr><th>メールアドレス</th>
-      <td><%= f.text_field :email %></td>
-    </tr>
-
-    <tr><th>ニックネーム</th>
-      <td><%= f.text_field :nickname %></td>
-    </tr>
-
-    <tr><th>生年月日</th>
-      <td><%= f.date_select :birthday, {start_year: 1950, end_year: 2007,
-          include_blank: true, use_two_digit_numbers: true} %></td>
-    </tr>
-
-    <tr><th>性別</th>
-      <td><%= f.radio_button :gender, User.genders.key(0) %>
-          <%= f.label :gender_man, User.genders_i18n[:man] %>
-          <%= f.radio_button :gender, User.genders.key(1) %>
-          <%= f.label :gender_woman, User.genders_i18n[:woman] %>
-          <%= f.radio_button :gender, User.genders.key(2) %>
-          <%= f.label :gender_other, User.genders_i18n[:other] %></td>
-    </tr>
-    </table>
+<div class="container">
+  <h4>登録情報編集</h4>
+  <div class="row">
+    <%= form_with model: @user, url: admin_user_path do |f| %>
+    <%= render "layouts/error_messages", model: f.object %>
+    <div class="field">
+      <%= f.label :last_name, "氏名" %><br />
+      <%= f.text_field :last_name, autofocus: true, placeholder: "姓" %>
+      <%= f.text_field :first_name, placeholder: "名" %>
     </div>
 
-    <div>
-        <%= f.submit "変更内容を保存" %>
+    <div class="field">
+      <%= f.label :email, "メールアドレス" %><br />
+      <%= f.text_field :email, placeholder: "@example.com" %>
     </div>
+
+    <div class="field">
+      <%= f.label :nickname, "ニックネーム" %><br />
+      <%= f.text_field :nickname %>
+    </div>
+
+    <div class="field">
+      <%= f.label :birthday, "生年月日" %><br />
+      <%= f.date_select :birthday, {start_year: 1940, end_year: 2020,
+          include_blank: true, use_two_digit_numbers: true} %>
+    </div>
+
+    <div class="field">
+      <%= f.label :gender, "性別" %><br />
+      <%= f.radio_button :gender, User.genders.key(0) %>
+      <%= f.label :gender_man, User.genders_i18n[:man] %>
+      <%= f.radio_button :gender, User.genders.key(1) %>
+      <%= f.label :gender_woman, User.genders_i18n[:woman] %>
+      <%= f.radio_button :gender, User.genders.key(2) %>
+      <%= f.label :gender_other, User.genders_i18n[:other] %>
+    </div>
+
+    <div class="actions">
+      <p><%= f.submit "変更内容を保存", class: "btn btn-success" %></p>
+    </div> 
     <% end %>
+  </div>
+</div>

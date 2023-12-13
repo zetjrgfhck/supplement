@@ -1,14 +1,13 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h2>レビュー一覧</h2>
-        <%= form_with url:reviews_path, local: true, method: :get do |f| %>
-        <%= f.text_field :keyword, placeholder: "例) 商品名、成分、悩み" %>
+  <div class="my-4">
+    <%= form_with url:reviews_path, local: true, method: :get do |f| %>
+      <div class="row">
+        <%= f.text_field :keyword, class: "form-control col-4", placeholder: "例) 商品名、成分、悩み" %>
         <%= f.select :order_by, [["昇順", "ASC"], ["降順", "DESC"], ["コメントの多い順", "COMMENT"], ["いいねの多い順", "BOOKMARK"]] %>
-        <%= f.submit "検索",class: "btn btn-secondary" %>
-        <% end %>
+        <%= f.submit "検索",class: "btn btn-secondary ml-2" %>
       </div>
-    </div>
+    <% end %>
+  </div>
 
   <div class="row">
     <% @reviews.each do |review| %>

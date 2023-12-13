@@ -4,12 +4,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-6">
-      <p><%= @review.title %></p>
+    <div class="col-7 pt-3">
+      <h5 class="text-dark"><%= @review.title %></h5>
       <p><%= @review.content %></p>
-      <p>写真</p>
       <% @review.images.each do |image| %>
-      <%= image_tag image, size: "100x100" %>
+      <%= image_tag image, size: "150x150" %>
       <% end %>
       <p>ニックネーム：<%= @review.user.nickname %></p>
       <p>性別：<%= @review.user.gender_i18n %></p>
@@ -18,43 +17,49 @@
           <% if @review.favorited_by?(current_user) %>
             <p><%= link_to review_bookmark_path(@review), method: :delete do %>
             ♥<%= @review.bookmarks.count %> いいね
-          <% end %></p>
+             <% end %></p>
           <% else %>
             <p><%= link_to review_bookmark_path(@review), method: :post do %>
             ♡<%= @review.bookmarks.count %> いいね
           <% end %></p>
         <% end %>
       <% end %>
-    
-      <% if @review.user == current_user %>
-        <%= link_to "レビューの編集", edit_review_path(@review) %>
-      <% end %>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-12">
-      <h5>コメント投稿</h5>
-        <%= form_with model: [@review, @comment] do |f| %>
-        <%= render "layouts/error_messages", model: f.object %>
-        <p><%= f.text_area :content %></p>
-        <p><%= f.submit "コメントする", class: "btn btn-success" %></p>
+        <% if @review.user == current_user %>
+          <%= link_to "レビューの編集", edit_review_path(@review) %>
         <% end %>
     </div>
   </div>
 
-  <div class ="row">
-    <div class="col-12">
-      <h5>最新コメント(<%= @review.comments.count %>)</h5>
-        <% @review.comments.each do |comment| %>
-        <p><%= Comment.human_attribute_name(:content) %><%= comment.content %></p>
-          <% if comment.user == current_user %>
-            <%= link_to "削除", comment_path(comment), method: :delete, "data-confirm" => "コメント削除しますか？" %>
+  <div class="row">
+    <div class="col-7">
+      <div class="form-label">
+        <h5 class="pt-1 pb-1">コメント投稿</h5>
+          <%= form_with model: [@review, @comment] do |f| %>
+          <%= render "layouts/error_messages", model: f.object %>
+          <p><%= f.text_area :content, class: "form-control w-40", rows: "5" %></p>
+          <p><%= f.submit "コメントする", class: "btn btn-success" %></p>
           <% end %>
-        <p><%= comment.user.nickname %>(<%= comment.user.era %>)</p>
-        <p><%= comment.user.gender_i18n %></p>
-        <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-      <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class ="row">
+    <div class="col-7">
+      <h5 class="mb-3">最新コメント(<%= @review.comments.count %>)</h5>
+        <% @review.comments.each do |comment| %>
+          <div class="border-bottom border-top border-5 border-promary">
+            <p><%#= Comment.human_attribute_name(:content) %><%= comment.content %></p>
+            <p><%= comment.user.nickname %>(<%= comment.user.era %>)</p>
+            <p><%= comment.user.gender_i18n %></p>
+            <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+                <% if comment.user == current_user %>
+                  <div class="btn btn-danger btm-sm">
+                    <%= link_to "コメント削除", comment_path(comment), method: :delete, "data-confirm" => "コメント削除しますか？" %>
+                  </div>
+                <% end %>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>

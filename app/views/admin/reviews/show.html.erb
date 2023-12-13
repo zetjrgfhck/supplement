@@ -2,25 +2,35 @@
   <%= flash[:notice] %>
 </div>
 
-<div>
-<p>タイトル：<%= @review.title %></p>
-<p>レビュー詳細：<%= @review.content %></p>
-<p>写真：</p>
-<% @review.images.each do |image| %>
-  <%= image_tag image, size: "100x100" %>
-<% end %>
-<p>ニックネーム：<%= @review.user.nickname %></p>
-<p>性別：<%= @review.user.gender_i18n %></p>
-<p>投稿日：<%= l(@review.created_at, format: :date) %></p>
-<%= link_to "管理者としてレビュー削除", admin_review_path(@review), method: :delete, "data-confirm" => "このレビューを削除しますか？" %>
+<div class="container">
+  <div class="row">
+    <div class="col-7 pt-3">
+      <h5 class="text-dark"><%= @review.title %></h5>
+      <p><%= @review.content %></p>
+      <% @review.images.each do |image| %>
+      <%= image_tag image, size: "150x150" %>
+      <% end %>
+      <p>ニックネーム：<%= @review.user.nickname %></p>
+      <p>性別：<%= @review.user.gender_i18n %></p>
+      <p>投稿日：<%= l(@review.created_at, format: :date) %></p>
+      <p><%= link_to "管理者としてレビュー削除", admin_review_path(@review), method: :delete, "data-confirm" => "このレビューを削除しますか？" %></p>
+    </div>
+  </div>
 
-<div>
-<h4>コメント一覧(<%= @review.comments.count %>)</h4>
-  <% @review.comments.each do |comment| %>
-    <p><%= Comment.human_attribute_name(:content) %><%= comment.content %></p>
-    <p><%= comment.user.nickname %>(<%= comment.user.era %>)</p>
-    <p><%= comment.user.gender_i18n %></p>
-    <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-    <%= link_to "コメント削除", admin_comment_path(comment), method: :delete, "data-confirm" => "このコメントを削除しますか？" %>
-  <% end %>
+  <div class ="row">
+    <div class="col-7">
+      <h5 class="mb-3">最新コメント(<%= @review.comments.count %>)</h5>
+        <% @review.comments.each do |comment| %>
+          <div class="border-bottom border-top border-5 border-promary">
+            <p><%#= Comment.human_attribute_name(:content) %><%= comment.content %></p>
+            <p><%= comment.user.nickname %>(<%= comment.user.era %>)</p>
+            <p><%= comment.user.gender_i18n %></p>
+            <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+              <div class="btn btn-danger btm-sm">
+                <%= link_to "コメント削除", admin_comment_path(comment), method: :delete, "data-confirm" => "コメント削除しますか？" %>
+              </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
 </div>

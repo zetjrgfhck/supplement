@@ -1,9 +1,9 @@
 <div class="container">
+  <%= form_with model: @review do |f| %>
   <div class="row">
     <div class="col-12">
       <div class="form-label">
         <h2>レビュー投稿</h2>
-          <%= form_with model: @review do |f| %>
           <h5>レビュータイトル</h5>
           <%= f.text_field :title, class: "form-control w-50", size: "5x5", autofocus: true, placeholder: "製品名や成分を交えると伝わりやすいです" %>
       </div>
@@ -25,7 +25,7 @@
         <%= f.label :images, "画像をアップロード", class: "image_input_btn" %>
         <%= f.file_field :images, accept: "image/*", multiple: true, class: "image_form" %>
         <%= f.submit "投稿する", class: "btn btn-success" %>
-        <% end %>
     </div>
   </div>
+<% end %>
 </div>
