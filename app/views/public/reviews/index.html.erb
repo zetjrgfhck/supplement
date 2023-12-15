@@ -1,3 +1,7 @@
+<% flash.each do |message_type, message| %>
+  <div><%= message %></div>
+<% end %>
+
 <div class="container">
   <div class="my-4">
     <%= form_with url:reviews_path, local: true, method: :get do |f| %>

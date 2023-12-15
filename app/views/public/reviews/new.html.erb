@@ -1,5 +1,10 @@
+<% flash.each do |message_type, message| %>
+  <div><%= message %></div>
+<% end %>
+
 <div class="container">
   <%= form_with model: @review do |f| %>
+  <%= render "layouts/error_messages", model: f.object %>
   <div class="row">
     <div class="col-12">
       <div class="form-label">

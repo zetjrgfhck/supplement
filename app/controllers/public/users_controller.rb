@@ -14,7 +14,7 @@ class Public::UsersController < ApplicationController
         flash[:notice] = "設定内容を保存しました"
         redirect_to users_my_page_path
       else
-        flash.now[:alert] = "変更に失敗しました"
+        flash.now[:notice] = "変更に失敗しました"
         render :"public/users/edit"
       end
   end

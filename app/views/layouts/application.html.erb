@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>サプリライフ</title>
+    <title>サプリ生活</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,16 +9,21 @@
     <script src="https://kit.fontawesome.com/a2662eb78a.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+
   </head>
 
 <header class="shadow-sm">
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <% if admin_signed_in? %>
-        <%= link_to "サプリライフ", admin_root_path, class: "navbar-brand" %>
+        <%= link_to "サプリ生活", admin_root_path, class: "navbar-brand font" %>
       <% else %>
-        <%= link_to "サプリライフ", root_path, class: "navbar-brand" %>
+        <%= link_to "サプリ生活", root_path, class: "navbar-brand font" %>
       <% end %>
+    
 
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>

@@ -8,7 +8,7 @@ class Public::CommentsController < ApplicationController
       flash[:notice] = "コメント投稿しました"
       redirect_to review_path(@review)
     else
-      flash.now[:alert] = "投稿に失敗しました"
+      flash.now[:notice] = "投稿に失敗しました"
       render "public/reviews/show"
     end
   end
