@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-7 pt-3">
       <h5 class="text-dark"><%= @review.title %></h5>
-      <p><%= @review.content %></p>
+      <p style="word-wrap: break-word;"><%= @review.content %></p>
       <% @review.images.each do |image| %>
       <%= image_tag image, size: "150x150" %>
       <% end %>

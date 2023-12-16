@@ -24,7 +24,7 @@
             <div class="card-trxt">
               <p class="txt-limit"><%= review.content.truncate(60) %></p>
               <%= link_to "#{review.comments.count} コメント", review_path(review.id) %>
-              <p><%= review.bookmarks.count %> いいね</p>
+              <p><%= review.bookmarks.count %> ブックマーク</p>
               <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
             </div>
           </div>
