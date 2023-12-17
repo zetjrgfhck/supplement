@@ -5,8 +5,8 @@
 <div class="container">
   <div class="row">
     <div class="col-7 pt-3">
-      <h5 class="text-dark"><%= @review.title %></h5>
-      <p style="word-wrap: break-word;"><%= @review.content %></p>
+      <h4 class="text-dark"><%= @review.title %></h4>
+      <p style="word-wrap: break-word;"><%= simple_format(@review.content) %></p>
       <% @review.images.each do |image| %>
       <%= image_tag image, size: "150x150" %>
       <% end %>
@@ -49,7 +49,7 @@
       <h5 class="mb-3">最新コメント(<%= @review.comments.count %>)</h5>
         <% @review.comments.each do |comment| %>
           <div class="border-bottom border-top border-5 border-promary">
-            <p><%#= Comment.human_attribute_name(:content) %><%= comment.content %></p>
+            <p><%#= Comment.human_attribute_name(:content) %><%= simple_format(comment.content) %></p>
             <p><%= comment.user.nickname %>(<%= comment.user.era %>)</p>
             <p><%= comment.user.gender_i18n %></p>
             <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
