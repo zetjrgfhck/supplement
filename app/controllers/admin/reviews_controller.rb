@@ -33,7 +33,7 @@ class Admin::ReviewsController < ApplicationController
     redirect_to admin_reviews_path
   end
 
-private
+  private
 
   def review_params
     params.require(:review).permit(:title, :content, images: [])

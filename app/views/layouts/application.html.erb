@@ -12,60 +12,57 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
-
   </head>
 
-<header class="shadow-sm">
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <% if admin_signed_in? %>
-        <%= link_to "サプリ生活", admin_root_path, class: "navbar-brand font" %>
-      <% else %>
-        <%= link_to "サプリ生活", root_path, class: "navbar-brand font" %>
-      <% end %>
-    
+  <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <% if admin_signed_in? %>
+          <%= link_to "サプリ生活", admin_root_path, class: "navbar-brand font" %>
+        <% else %>
+          <%= link_to "サプリ生活", root_path, class: "navbar-brand font" %>
+        <% end %>
 
-      <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item pr-3">
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item pr-3">
             <%= link_to "マイページ", users_my_page_path, class: "btn btn-primary" %></li>
 
-          <li class="nav-item pr-3">
+            <li class="nav-item pr-3">
             <%= link_to "マイレビュー", reviews_user_path(current_user), class: "btn btn-primary" %></li>
 
-          <li class="nav-item pr-3">
-          <%= link_to "レビューする", new_review_path, class: "btn btn-primary" %></li>
+            <li class="nav-item pr-3">
+            <%= link_to "レビューする", new_review_path, class: "btn btn-primary" %></li>
 
-        <li class="nav-item pr-3">
-          <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-primary", method: :delete %>
-        </li>
+            <li class="nav-item pr-3">
+            <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-primary", method: :delete %></li>
 
-        <% elsif admin_signed_in? %>
-          <li class="nav-item pr-3">
+          <% elsif admin_signed_in? %>
+            <li class="nav-item pr-3">
             <%= link_to "ユーザー一覧", admin_users_path, class: "btn btn-primary" %></li>
 
-          <li class="nav-item pr-3">
+            <li class="nav-item pr-3">
             <%=link_to "レビュー一覧", admin_reviews_path, class: "btn btn-primary" %></li>
 
-          <li class="nav-item pr-3">
+            <li class="nav-item pr-3">
             <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-primary", method: :delete %></li>
 
-        <% else %>
-          <li class="nav-item pr-3">
-          <%= link_to "このサイトについて", about_path, class: "btn btn-primary" %></li>
+          <% else %>
+            <li class="nav-item pr-3">
+            <%= link_to "このサイトについて", about_path, class: "btn btn-primary" %></li>
 
-          <li class="nav-item pr-3">
+            <li class="nav-item pr-3">
             <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %></li>
 
-          <li class="nav-item pr-3">
+            <li class="nav-item pr-3">
             <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %></li>
 
-          <li class="nav-item pr-3">
+            <li class="nav-item pr-3">
             <%= link_to "レビューする", new_review_path, class: "btn btn-primary" %></li>
-        <% end %>
-      </ul>
-    </div>
-  </nav>
-</header>
-<%= yield %>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <%= yield %>
 </html>

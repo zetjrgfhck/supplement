@@ -9,10 +9,10 @@ class Public::ReviewsController < ApplicationController
     order_by = params[:order_by] # ASC or DESC
     if order_by == "ASC"
       @reviews = Review.where("title LIKE ?", "%#{keyword}%").order(created_at: :asc).page(params[:page])
-    elsif order_by == "BOOKMARK"
+    elsif order_by == "BOOKMARK" #ブックマークの多い順
       @reviews = Review.includes(:bookmarks).sort {|a,b| b.bookmarks.size <=> a.bookmarks.size}
       @reviews = Kaminari.paginate_array(@reviews).page(params[:page])
-    elsif order_by == "COMMENT"
+    elsif order_by == "COMMENT" #コメントの多い順
       @reviews = Review.includes(:comments).sort {|a,b| b.comments.size <=> a.comments.size}
       @reviews = Kaminari.paginate_array(@reviews).page(params[:page])
     else
@@ -60,10 +60,10 @@ class Public::ReviewsController < ApplicationController
     redirect_to reviews_path
   end
 
-
-private
+  private
 
   def review_params
     params.require(:review).permit(:title, :content, :keyword, images: [])
   end
+
 end

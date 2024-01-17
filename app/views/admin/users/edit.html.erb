@@ -3,6 +3,7 @@
   <div class="row">
     <%= form_with model: @user, url: admin_user_path do |f| %>
     <%= render "layouts/error_messages", model: f.object %>
+    
     <div class="field">
       <%= f.label :last_name, "氏名" %><br />
       <%= f.text_field :last_name, autofocus: true, placeholder: "姓" %>
